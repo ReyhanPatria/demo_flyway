@@ -7,6 +7,7 @@ CREATE TABLE `transactions` (
 CREATE TABLE `transaction_details` (
     `transactionId` INT NOT NULL,
     `productId` INT NOT NULL,
+    `quantity` INT NOT NULL,
     PRIMARY KEY(transactionId, productId),
     FOREIGN KEY (transactionId) REFERENCES transactions(id),
     FOREIGN KEY (productId) REFERENCES transactions(id)
