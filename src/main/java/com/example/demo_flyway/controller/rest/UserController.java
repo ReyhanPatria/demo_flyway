@@ -1,5 +1,6 @@
 package com.example.demo_flyway.controller.rest;
 
+import com.example.demo_flyway.model.entity.Transaction;
 import com.example.demo_flyway.model.entity.User;
 import com.example.demo_flyway.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,10 @@ public class UserController {
     public ResponseEntity<User> getUserById(@PathVariable Integer id) {
         Optional<User> user = userService.findById(id);
         return ResponseEntity.of(user);
+    }
+
+    @GetMapping("/user/{id}/transactions")
+    public List<Transaction> getUserTransactions(@PathVariable Integer id) {
+        return userService.getUserTransactions(id);
     }
 }
