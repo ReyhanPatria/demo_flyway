@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TransactionService {
@@ -25,7 +26,11 @@ public class TransactionService {
         return transactionRepository.findAllByUserId(userId);
     }
 
-    public List<TransactionDetail> findDetailsByTransactionId(Integer transactionId) {
-        return transactionDetailRepository.findAllByTransactionId(transactionId);
+    public Optional<List<TransactionDetail>> findDetailsByTransactionId(Integer transactionId) {
+        List<TransactionDetail> transactionDetailList = transactionDetailRepository.findAllByTransactionId(transactionId);
+        if(transactionDetailList.isEmpty())
+            return Optional.empty();
+
+        return Optional.of(transactionDetailList);
     }
 }

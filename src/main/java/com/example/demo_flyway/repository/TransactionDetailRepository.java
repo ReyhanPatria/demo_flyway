@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface TransactionDetailRepository extends JpaRepository<TransactionDetail, TransactionDetailId> {
-    @Query("SELECT * FROM transaction_details trd WHERE trd.transactionDetailId.transactionId = ?1")
+    @Query(value = "SELECT * FROM transaction_details WHERE transactionId = ?1", nativeQuery = true)
     public List<TransactionDetail> findAllByTransactionId(Integer transactionId);
 }
